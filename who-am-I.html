@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who am I?</title>
+
+    <style>
+        ol{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        }
+    </style>
+</head>
+<body>
+    <h3>Name</h3>
+    <ol id="ul"></ol>
+    <!-- console.log(data.results.map( record => `${record.name.title} ${record.name.first} ${record.name.last}`)) -->
+
+    <script>
+        fetch('https://randomuser.me/api/?results=5000')
+            .then(res => res.json())
+            .then(data => {
+                const collection = data.results;
+                for (let i = 0; i < collection.length; i++) {
+                    const userName = `${collection[i].name.title} ${collection[i].name.first} ${collection[i].name.last}`;
+                    console.log(userName);
+                    
+
+                    const ul = document.getElementById('ul');
+                    const li = document.createElement("li");
+                    li.innerText = userName;
+                    ul.appendChild(li);
+                    
+                }
+            })
+    </script>
+</body>
+</html>

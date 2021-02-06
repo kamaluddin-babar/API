@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do Something...</title>
+</head>
+<body>
+    <h1 id="fun-activity"></h1>
+    <h3>Learn From: <a id="link" href="" target="_blank" rel="noopener noreferrer">Visit this place</a></h3>
+
+
+
+    <script>
+        // this function load data from boredapi.com
+        function doSomething() {
+            fetch('http://www.boredapi.com/api/activity/')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("fun-activity").innerText = data.activity;
+                    const link = document.getElementById("link");
+                    link.href =data.link;
+                    link.innerText = data.link;
+                })
+            
+        };
+        doSomething();
+        setInterval(() => {
+            doSomething();
+        }, 3000);
+    </script>
+</body>
+</html>
